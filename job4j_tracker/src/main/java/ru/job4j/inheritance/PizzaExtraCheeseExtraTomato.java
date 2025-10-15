@@ -7,5 +7,4 @@ public class PizzaExtraCheeseExtraTomato extends PizzaExtraCheese {
     public String name() {
         return super.name() + extraTomato;
     }
-
 }
