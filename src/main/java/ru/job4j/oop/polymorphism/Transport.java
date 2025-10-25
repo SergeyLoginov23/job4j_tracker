@@ -1,4 +1,4 @@
-package ru.job4j.polymorphism;
+package ru.job4j.oop.polymorphism;
 
 public interface Transport {
     void move();

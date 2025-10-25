@@ -1,4 +1,4 @@
-package ru.job4j.polymorphism;
+package ru.job4j.oop.polymorphism;
 
 public class Bus implements Transport {
     @Override
