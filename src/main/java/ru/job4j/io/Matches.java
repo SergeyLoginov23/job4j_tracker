@@ -16,15 +16,13 @@ public class Matches {
             if (matches >= 1 && matches <= 3) {
                 if (matches <= count) {
                     count = count - matches;
+                    turn = !turn;
                 } else {
                     System.out.println("Ошибочный ввод! Нельзя забирать больше спичек, чем осталось! " + player + " Повторите попытку");
-                    turn = !turn;
                 }
             } else {
-                System.out.println("Ошибочный ввод! " + player + " введите число от 1 до 3:");
-                turn = !turn;
+                System.out.println("Ошибочный ввод!");
             }
-                turn = !turn;
         }
         if (!turn) {
             System.out.println("Выиграл первый игрок");
