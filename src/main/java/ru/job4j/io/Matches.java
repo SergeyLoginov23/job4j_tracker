@@ -9,7 +9,6 @@ public class Matches {
         boolean turn = true;
         int count = 11;
         while (count > 0) {
-            boolean wrongInput = false;
             System.out.println("Осталось спичек " + count);
             String player = turn ? "Первый игрок" : "Второй игрок";
             System.out.println(player + " введите число от 1 до 3:");
@@ -19,15 +18,13 @@ public class Matches {
                     count = count - matches;
                 } else {
                     System.out.println("Ошибочный ввод! Нельзя забирать больше спичек, чем осталось! " + player + " Повторите попытку");
-                    wrongInput = true;
+                    turn = !turn;
                 }
             } else {
                 System.out.println("Ошибочный ввод! " + player + " введите число от 1 до 3:");
-                wrongInput = true;
-            }
-            if (!wrongInput) {
                 turn = !turn;
             }
+                turn = !turn;
         }
         if (!turn) {
             System.out.println("Выиграл первый игрок");
