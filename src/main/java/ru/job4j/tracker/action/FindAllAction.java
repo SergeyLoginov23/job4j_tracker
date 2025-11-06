@@ -4,9 +4,8 @@ import ru.job4j.tracker.input.Input;
 import ru.job4j.tracker.Item;
 import ru.job4j.tracker.output.Output;
 import ru.job4j.tracker.Tracker;
-import java.util.List;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public class FindAllAction implements UserAction {
     private final Output output;
