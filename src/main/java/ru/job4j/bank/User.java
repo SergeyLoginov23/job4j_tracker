@@ -2,7 +2,16 @@ package ru.job4j.bank;
 
 import java.util.Objects;
 
+/**
+ * Класс описывает модель клиента банка
+ * @author Sergey Loginov
+ * @version 1.0
+ */
 public class User {
+    /**
+     * Основные поля: паспортные данные и ФИО.
+     * Ключевое поле, по которому происходит сравнение - паспортные данные.
+     */
     private String passport;
     private String username;
 

@@ -5,17 +5,41 @@ import ru.job4j.bank.User;
 
 import java.util.*;
 
+/**
+ * Класс описывает простую модель банковского сервиса, которая умеет регистрировать клиентов,
+ * открывать им счета и переводить деньги, а также осуществлять поиск счетов и клиентов в своей системе
+ * @author Sergey Loginov
+ * @version 1.0
+ */
 public class BankService {
+    /**
+     * Хранение данных осуществляется в коллекции типа HashMap
+     */
     private final Map<User, List<Account>> users = new HashMap<>();
 
+    /**
+     * Метод принимает на вход пользователя и добавляет его в систему, если такого пользователя еще нет.
+     * @param user пользователь, который будет добавлен
+     */
     public void addUser(User user) {
         users.putIfAbsent(user, new ArrayList<Account>());
     }
 
+    /**
+     * Метод принимает на вход паспортные данные пользователя и
+     * удаляет его из системы, если он там есть
+     * @param passport паспортные данные, по которым происходит поиск
+     */
     public void deleteUser(String passport) {
         users.remove(new User(passport, ""));
     }
 
+    /**
+     * Метод принимает на вход паспортные данные пользователя и счет и добавляет счет для пользователя,
+     * найденного по указанным паспортным данным.
+     * @param passport паспортные данные, по которым происходит поиск
+     * @param account счет, который необходимо добавить
+     */
     public void addAccount(String passport, Account account) {
         User user = findByPassport(passport);
         if (user != null) {
@@ -26,6 +50,11 @@ public class BankService {
         }
     }
 
+    /**
+     * Метод принимает на вход паспортные данные пользователя и осуществляет поиск его в системе.
+     * @param passport паспортные данные, по которым происходит поиск
+     * @return user возвращает пользователя, если таковой найден
+     */
     public User findByPassport(String passport) {
         User result = null;
         for (User user : users.keySet()) {
@@ -37,6 +66,13 @@ public class BankService {
         return result;
     }
 
+    /**
+     * Метод принимает на вход паспортные данные пользователя и реквизиты счета и осуществляет поиск счета
+     * для клиента, найденного по паспортным данным.
+     * @param passport  паспортные данные, по которым происходит поиск
+     * @param requisite реквизиты счета, по которым происходит поиск
+     * @return Account возвращает счет, если таковой найден
+     */
     public Account findByRequisite(String passport, String requisite) {
         User user = findByPassport(passport);
         Account result = null;
@@ -52,6 +88,16 @@ public class BankService {
         return result;
     }
 
+    /** Метод принимает на вход 2 набора паспортных данных и реквизтов счетов (по счету для списания и получения
+     * денежных средств), а также сумму перевода. Осуществляет поиск обоих счетов и если таковые найдены, а также баланс
+     * на счете списания больше, чем сумма перевода, осуществляет перевод денежных средств.
+     * @param sourcePassport паспортные данные, по которым происходит поиск плательщика
+     * @param sourceRequisite реквизиты счета, по которым происходит поиск счета для списания
+     * @param destinationPassport паспортные данные, по которым происходит поиск получателя
+     * @param destinationRequisite реквизиты счета, по которым происходит поиск счета для получения
+     * @param amount сумма перевода
+     * @return если перевод успешен, возвращает true, иначе false
+     */
     public boolean transferMoney(String sourcePassport, String sourceRequisite,
                                  String destinationPassport, String destinationRequisite,
                                  double amount) {
