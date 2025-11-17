@@ -26,6 +26,6 @@ public class Deck {
         Stream.of(Deck.Suit.values())
                 .flatMap(suit -> Stream.of(Deck.Value.values())
                         .map(value -> new Deck.Card(suit, value)))
-                .forEach(System.out::println);;
+                .forEach(System.out::println);
     }
 }
