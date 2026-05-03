@@ -1,5 +1,6 @@
 package ru.job4j.tracker;
 
+import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Objects;
@@ -21,6 +22,12 @@ public class Item {
     public Item(int id, String name) {
         this.id = id;
         this.name = name;
+    }
+
+    public Item(int id, Timestamp created, String name) {
+        this.id = id;
+        this.name = name;
+        this.created = created.toLocalDateTime();
     }
 
     public int getId() {
@@ -45,19 +52,7 @@ public class Item {
 
     @Override
     public String toString() {
-        return "Item{"
-                +
-                "id="
-                + id
-                +
-                ", name='"
-                + name
-                + '\''
-                +
-                ", created="
-                + created.format(FORMATTER)
-                +
-                '}';
+        return String.format("id: %s, name: %s, created: %s", id, name, FORMATTER.format(created));
     }
 
     @Override
